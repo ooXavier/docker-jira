@@ -32,7 +32,8 @@ Example
 -------
 
 ```
-docker run -d --name mysql -p 3306:3306 -v /opt/data:/var/lib/mysql -e MYSQL_PASS="sebulba" mooxavier/mysql 
-./initialise_db.sh <PASSWORD>
+PASSWD=test
+docker run -d --name mysql -p 3306:3306 -v /opt/data:/var/lib/mysql -e MYSQL_PASS="${PASSWD}" mooxavier/mysql 
+./initialise_db.sh ${PASSWD}
 docker run -t -d --name jira --link mysql:db -p 8080:8080 -e "DATABASE_URL=mysql://jirausr:jellyfish@0.0.0.0:3306/jiradb" mooxavier/docker-jira
 ```
